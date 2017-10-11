@@ -1,0 +1,42 @@
+<%= form_with(model: planning_state, local: true) do |form| %>
+  <% if planning_state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(planning_state.errors.count, "error") %> prohibited this planning_state from being saved:</h2>
+
+      <ul>
+      <% planning_state.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.text_field :event_id, id: :planning_state_event_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_set %>
+    <%= form.check_box :date_set, id: :planning_state_date_set %>
+  </div>
+
+  <div class="field">
+    <%= form.label :room_booked %>
+    <%= form.check_box :room_booked, id: :planning_state_room_booked %>
+  </div>
+
+  <div class="field">
+    <%= form.label :announced %>
+    <%= form.check_box :announced, id: :planning_state_announced %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :planning_state_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

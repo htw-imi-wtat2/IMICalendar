@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  date_set: false
+  room_booked: false
+  announced: false
+  notes: MyText
+
+two:
+  event: two
+  date_set: false
+  room_booked: false
+  announced: false
+  notes: MyText

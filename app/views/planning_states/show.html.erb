@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @planning_state.event %>
+</p>
+
+<p>
+  <strong>Date set:</strong>
+  <%= @planning_state.date_set %>
+</p>
+
+<p>
+  <strong>Room booked:</strong>
+  <%= @planning_state.room_booked %>
+</p>
+
+<p>
+  <strong>Announced:</strong>
+  <%= @planning_state.announced %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @planning_state.notes %>
+</p>
+
+<%= link_to 'Edit', edit_planning_state_path(@planning_state) %> |
+<%= link_to 'Back', planning_states_path %>
