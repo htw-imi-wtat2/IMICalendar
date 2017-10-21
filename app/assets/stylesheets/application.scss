@@ -13,5 +13,17 @@
  *= require_tree .
  *= require_self
  */
+//http://corporatedesign.htw-berlin.de/schrift-farbe/markenfarben/
+//http://corporatedesign.htw-berlin.de/files/Presse/Sonstiges/Gruentoene_als_Hexadezimalwerte.pdf
+
  // Custom bootstrap variables must be set or imported *before* bootstrap.
+ // Your variable overrides
+
+@import "htw";
+$text-muted:                                $htw-green80;
+$brand-primary:                             $htw-green100;
+
 @import "bootstrap";
+/*
+
+*/

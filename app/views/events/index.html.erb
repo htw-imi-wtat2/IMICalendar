@@ -3,6 +3,26 @@
 <h1><%= @sgs ? "Planned Events" : "Upcoming IMI-Events" %></h1>
 
 <p>View for <%= link_to 'Students', events_path(role: :student) %>/<%= link_to 'SGS', events_path(role: :sgs) %>
+
+
+  <div class="row marketing">
+    <div class="col-lg-6">
+      <% @events_left.each do | event | %>
+      <h4><%= event.title %></h4>
+      <p><%= event.date %>, <%= event.location %><br/>
+      <%= event.description %></p>
+      <% end %>
+    </div>
+
+    <div class="col-lg-6">
+      <% @events_right.each do | event | %>
+      <h4><%= event.title %></h4>
+      <p><%= event.date %>, <%= event.location %><br/>
+      <%= event.description %></p>
+      <% end %>
+    </div>
+  </div>
+
 <table>
   <tbody>
     <tr>

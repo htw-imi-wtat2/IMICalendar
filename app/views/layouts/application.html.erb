@@ -1,15 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>IMICalendar</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-  <div id="imi-pictogram"><%= image_tag "imi-small.jpg" %></div>
-    <%= yield %>
+
+        <div class="container">
+          <header class="header clearfix">
+            <nav>
+              <ul class="nav nav-pills float-right">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <%= image_tag "imi-small.jpg" %>
+                </li>
+              </ul>
+            </nav>
+            <h3 class="text-muted">IMI-Calendar</h3>
+          </header>
+
+          <main role="main">
+<!--
+            <div class="jumbotron">
+              <h1 class="display-3">Jumbotron heading</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+            </div>
+-->
+            <%= yield %>
+          </main>
+
+          <footer class="footer">
+            <p>&copy; HTW Berlin</p>
+          </footer>
+
+        </div> <!-- /container -->
+
+
+
   </body>
 </html>
