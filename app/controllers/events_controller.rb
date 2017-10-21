@@ -5,6 +5,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @events.each { |e| e.planning_state ||= e.build_planning_state }
+    @sgs = params['role'] == 'sgs'
   end
 
   # GET /events/1
