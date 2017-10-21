@@ -1,29 +1,59 @@
-<p id="notice"><%= notice %></p>
+<table>
+  <tr>
+    <td>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @event.start_date %>
-</p>
+      <p>
+        <strong>Title:</strong>
+        <%= @event.title %>
+      </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @event.end_date %>
-</p>
+      <p>
+        <strong>Start date:</strong>
+        <%= @event.start_date %>
+      </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+      <p>
+        <strong>End date:</strong>
+        <%= @event.end_date %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+      <p>
+        <strong>Location:</strong>
+        <%= @event.location %>
+      </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+      <p>
+        <strong>Description:</strong>
+        <%= @event.description %>
+      </p>
+
+      <%= link_to 'Edit', edit_event_path(@event) %> |
+      <%= link_to 'Back', events_path %>
+
+    </td>
+    <td>
+      <p>
+        <strong>Date set:</strong>
+        <%= @planning_state.date_set %>
+      </p>
+
+      <p>
+        <strong>Room booked:</strong>
+        <%= @planning_state.room_booked %>
+      </p>
+
+      <p>
+        <strong>Announced:</strong>
+        <%= @planning_state.announced %>
+      </p>
+
+      <p>
+        <strong>Notes:</strong>
+        <%= @planning_state.notes %>
+      </p>
+
+    </td>
+  </tr>
+</table>

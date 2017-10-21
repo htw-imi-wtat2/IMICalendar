@@ -1,4 +1,9 @@
+
+
 <%= form_with(model: event, local: true) do |form| %>
+<table>
+  <tr>
+    <td>
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -35,8 +40,54 @@
     <%= form.label :description %>
     <%= form.text_area :description, id: :event_description %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
+
+
+</td>
+<td>
+  <% planning_state = @planning_state %>
+  <%= form.fields_for :planning_state, planning_state do |ps_form| %>
+    <% if planning_state.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(planning_state.errors.count, "error") %> prohibited this planning_state from being saved:</h2>
+
+        <ul>
+        <% planning_state.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= ps_form.label :date_set %>
+      <%= ps_form.check_box :date_set, id: :planning_state_date_set %>
+    </div>
+
+    <div class="field">
+      <%= ps_form.label :room_booked %>
+      <%= ps_form.check_box :room_booked, id: :planning_state_room_booked %>
+    </div>
+
+    <div class="field">
+      <%= ps_form.label :announced %>
+      <%= ps_form.check_box :announced, id: :planning_state_announced %>
+    </div>
+
+    <div class="field">
+      <%= ps_form.label :notes %>
+      <%= ps_form.text_area :notes, id: :planning_state_notes %>
+    </div>
+
 <% end %>
+
+</td>
+</tr>
+</table>
+
+
+
+<% end %>
+<!-- end form -->

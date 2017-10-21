@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @planning_state = @event.build_planning_state
   end
 
   # GET /events/1/edit
@@ -24,7 +25,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    puts @params.inspect
     @event = Event.new(event_params)
+
 
     respond_to do |format|
       if @event.save
@@ -40,6 +43,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    puts @params.inspect
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -62,13 +66,18 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :location, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+    @planning_state = @event.planning_state || @event.create_planning_state
+  end
+
+  # only allow the white list through.
+  def event_params
+    params.require(:event).permit(:title, :start_date, :end_date, :location,
+                                  :description,
+                                  planning_state_attributes:
+                                  %i[id date_set room_booked announced notes])
+  end
 end
