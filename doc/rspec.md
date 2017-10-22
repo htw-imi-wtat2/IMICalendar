@@ -23,3 +23,23 @@ and run
 and
 
     rails generate rspec:install
+
+## End to End Tests with Capybara (without JavaScript)
+
+Rails 5.1 has capybara already installed, if not (e.g. because you skipped the
+  tests with rails new) add it to the gemfile:
+
+    gem "capybara"
+
+And then follow the documentation under
+ "[Using Capybara with RSpec](https://github.com/teamcapybara/capybara#using-capybara-with-rspec)":
+
+* add `require 'capybara/rspec'` to spec_helper.rb
+* create feature test under spec/features (see committed file)
+* note that the specs need to import rails_helper.rb which imports spec_helper.rb
+
+Further documentation (especially read through the DSL doc!)
+
+* [Capybara](https://github.com/teamcapybara/capybara)
+* [Using Capybara with RSpec](https://github.com/teamcapybara/capybara#using-capybara-with-rspec)
+* [Capybara - The DSL](https://github.com/teamcapybara/capybara#the-dsl)
