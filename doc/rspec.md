@@ -37,7 +37,7 @@ And then follow the documentation under
 * add `require 'capybara/rspec'` to spec_helper.rb
 * create feature test under spec/features (see committed file)
 * note that the specs need to import rails_helper.rb which imports spec_helper.rb
-* see the tests for s003 and s004 as examples. s004 fills out a form using the ids of the form elements ([interacting with forms](https://github.com/teamcapybara/capybara#interacting-with-forms))
+* see the tests for s003 and s001 as examples. s004 fills out a form using the ids of the form elements ([interacting with forms](https://github.com/teamcapybara/capybara#interacting-with-forms))
 * if you get confused, open the page at any moment with save_and_open_page (add launchy gem first)
 
 Further documentation (especially read through the DSL doc!):

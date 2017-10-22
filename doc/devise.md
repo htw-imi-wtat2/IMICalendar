@@ -80,5 +80,16 @@ use the whitelist method rather than blacklisting:
 If you close everything and open specific pages, the chances that you have a
 page open to the public that shouldn't be open are less.
 
+## Testing with Devise
+
+As some pages require a login now, the tests fail!
+Follow the instructions in the Devise Wiki: [https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara](https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara)
+
+Note that as we don't use FactoryGirl yet, we just create the User.
+
+## Implement Story and clean everything up.
+
+Finally, implemented Story S007 and cleaned up all the views.
+
 ## Resources
 * [Devise](https://github.com/plataformatec/devise)
