@@ -18,7 +18,7 @@ run generator:
 
     rails generate devise:install
 
-This yields the following output: 
+This yields the following output (see result in commit):
 <pre>
     Running via Spring preloader in process 38365
           create  config/initializers/devise.rb
@@ -50,6 +50,14 @@ This yields the following output:
 
            rails g devise:views
 </pre>
+
+## Devise Modules
+
+As the login will be managed via ldap later on, I will not need features like
+password recovery via email or email validation. If you consider using them,
+consider postponing them to a second step as you will need to set up connection
+to an email provider which tends to be a hassle.
+
 
 ## Resources
 * [Devise](https://github.com/plataformatec/devise)
