@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :planning_states
   resources :events
   root 'events#index'
