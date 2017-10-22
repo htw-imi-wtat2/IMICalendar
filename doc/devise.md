@@ -65,5 +65,20 @@ I've followed Chapter 2 of Copeland, see commits:
 A2-Devise: Styling the Login and Registration Forms (Copeland P. 20 ff)
 A2-Devise: Validating Registration (Copeland P. 26 ff)
 
+## Finetuning Access - Whitelisting
+
+With the `before_action :authenticate_user!` in the applicaton_controller.rb
+all pages require a login. For the
+IMI-Calendar Page this is not the case, as some pages should be accessible
+without login. In fact, most apps will want a friendly welcome page rather than
+a harsh "login first!" page welcoming their users.
+
+    skip_before_action :authenticate_user!, only: [:index]
+
+in EventsController does that. Even if you have many pages not requiring login
+use the whitelist method rather than blacklisting:
+If you close everything and open specific pages, the chances that you have a
+page open to the public that shouldn't be open are less.
+
 ## Resources
 * [Devise](https://github.com/plataformatec/devise)
