@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :planning_states
   resources :events
+  get 'planning', to: 'events#planning'
   root 'events#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

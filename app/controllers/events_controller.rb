@@ -6,12 +6,15 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-    @events.each { |e| e.planning_state ||= e.build_planning_state }
     s = @events.size - 1
     m = s / 2
     @events_left = @events[0..m]
     @events_right = @events[(m + 1)..s]
-    @sgs = params['role'] == 'sgs'
+  end
+
+  def planning
+    @events = Event.all
+    @events.each { |e| e.planning_state ||= e.build_planning_state }
   end
 
   # GET /events/1

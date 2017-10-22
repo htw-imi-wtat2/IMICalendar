@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @sgs ? "Planned Events" : "Upcoming IMI-Events" %></h1>
-
-<p>View for <%= link_to 'Students', events_path(role: :student) %>/<%= link_to 'SGS', events_path(role: :sgs) %>
-
+<h1>Upcoming IMI-Events</h1>
 
   <div class="row marketing">
     <div class="col-lg-6">
@@ -22,34 +19,3 @@
       <% end %>
     </div>
   </div>
-
-<table>
-  <tbody>
-    <tr>
-      <th colspan=3></th>
-      <% if @sgs %>
-      <th>Date</th>
-      <th>Room </th>
-      <th>Announced</th>
-      <th colspan = "2"><%= link_to 'New Event', new_event_path %></th>
-      <% end %>
-    </tr>
-    <% @events.each do |event|
-       planning_state = event.planning_state%>
-      <tr>
-        <td><%= event.date %></td>
-        <td><%= event.title %></td>
-        <td><%= link_to 'Info', event %></td>
-        <% if @sgs %>
-        <td><%= planning_state.date_set %></td>
-        <td><%= planning_state.room_booked %></td>
-        <td><%= planning_state.announced %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>

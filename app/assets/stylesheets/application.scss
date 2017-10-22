@@ -17,11 +17,13 @@
 //http://corporatedesign.htw-berlin.de/files/Presse/Sonstiges/Gruentoene_als_Hexadezimalwerte.pdf
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
- // Your variable overrides
+ // see https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+
 
 @import "htw";
 $text-muted:                                $htw-green80;
 $brand-primary:                             $htw-green100;
+$blue: $htw-blue;
 
 @import "bootstrap";
 /*
