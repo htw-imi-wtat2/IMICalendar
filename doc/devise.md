@@ -58,6 +58,12 @@ password recovery via email or email validation. If you consider using them,
 consider postponing them to a second step as you will need to set up connection
 to an email provider which tends to be a hassle.
 
+## Chapter 2 Copeland
+
+I've followed Chapter 2 of Copeland, see commits:
+
+A2-Devise: Styling the Login and Registration Forms (Copeland P. 20 ff)
+A2-Devise: Validating Registration (Copeland P. 26 ff)
 
 ## Resources
 * [Devise](https://github.com/plataformatec/devise)
