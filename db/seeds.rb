@@ -11,3 +11,5 @@ Event.destroy_all
 Event.create(title: "Showtime WS 2017/18", start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
 Event.create(title: "Showtime SS 2018", start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
 Event.create(title: "Infoveranstaltung Auslandspraktikum IMI-B",  description: "Informationen zum Auslandspraktikum: Anmeldung, Anerkennung, Finanzierung" )
+User.create(email: 'test@htw-berlin.de', name: 'Testuser', password: 'geheimgeheim',
+            password_confirmation: 'geheimgeheim')
