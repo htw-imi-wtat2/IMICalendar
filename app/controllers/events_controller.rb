@@ -5,7 +5,16 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @tags = Tag.all
+
+    if tag_id = params[:tag]
+      # TBD: check if id is present
+      @tag = Tag.find(tag_id)
+      @events = @tag.events
+    else
+      @events = Event.all
+    end
+
     s = @events.size - 1
     m = s / 2
     @events_left = @events[0..m]
