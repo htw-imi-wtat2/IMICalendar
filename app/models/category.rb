@@ -12,4 +12,8 @@ class Category < ApplicationRecord
       Category.find_or_create_by(name: name)
     end
   end
+
+  def self.all_s
+    Category.all.order(:name).pluck(:name).join(', ')
+  end
 end

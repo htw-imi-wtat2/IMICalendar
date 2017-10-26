@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -45,8 +46,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
-
+    @event.categories = Category.s_to_categories(s_params[:categories])
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -61,9 +61,10 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    categories = params[:categories]
     respond_to do |format|
       if @event.update(event_params)
+        @event.categories = Category.s_to_categories(params[:categories])
+        @event.save
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -89,6 +90,12 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
     @planning_state = @event.planning_state || @event.create_planning_state
+  end
+
+  def set_categories
+    @categories_all = Category.all_s
+    @categories = @event.categories
+    @categories_s = Category.categories_to_s(@categories)
   end
 
   # only allow the white list through.

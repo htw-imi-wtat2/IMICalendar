@@ -16,16 +16,17 @@
     </div>
   <% end %>
 
-<div class="field">
-  <%= form.label :categories %>
-  <%= text_field_tag :categories %>
-</div>
-
-
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :event_title %>
   </div>
+
+  <p>Available Categories: <%= @categories_all %>
+  <div class="field">
+    <%= form.label :categories %>
+    <%= text_field_tag(:categories, value =  @categories_s) %>
+  </div>
+
 
   <div class="field">
     <%= form.label :start_date %>

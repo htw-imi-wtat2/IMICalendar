@@ -7,3 +7,4 @@
 | S005 | As a Student, I can filter events that are relevant for me (B/M, Semester).                                                                   |            |          |
 | S002 | As an IMI-Student, I get an overview of events coming up within the next week.                                                                |            |          |
 | S006 | I can see the IMI-Calendar in my favourite Calendar Application.                                                                              |            |          |
+| S007 | As a SGS, I can edit the Categories of an event while editing the event.                                                                      |            | |        |
