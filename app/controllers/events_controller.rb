@@ -44,7 +44,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    puts @params.inspect
     @event = Event.new(event_params)
 
 
