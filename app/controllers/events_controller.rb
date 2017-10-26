@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @tags = Tag.all
+    @categories = Category.all
 
-    if tag_id = params[:tag]
+    if category_id = params[:category]
       # TBD: check if id is present
-      @tag = Tag.find(tag_id)
-      @events = @tag.events
+      @category = Category.find(category_id)
+      @events = @category.events
     else
       @events = Event.all
     end
@@ -62,7 +62,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    tags = params[:tags]
+    categories = params[:categories]
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }

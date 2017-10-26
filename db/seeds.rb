@@ -13,16 +13,17 @@ User.create(email: 'test@htw-berlin.de', name: 'Testuser', password: 'geheimgehe
 
 PlanningState.destroy_all
 Event.destroy_all
-st17 = Event.create(title: "Showtime WS 2017/18", start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-st18 = Event.create(title: "Showtime SS 2018", start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-info = Event.create(title: "Infoveranstaltung Auslandspraktikum IMI-B",  description: "Informationen zum Auslandspraktikum: Anmeldung, Anerkennung, Finanzierung" )
+st17 = Event.create(title: 'Showtime WS 2017/18', start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: 'H001', description: 'Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters' )
+st18 = Event.create(title: 'Showtime SS 2018', start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: 'H001', description: 'Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters' )
+info = Event.create(title: 'Infoveranstaltung Auslandspraktikum IMI-B',  description: 'Informationen zum Auslandspraktikum: Anmeldung, Anerkennung, Finanzierung' )
 
-Tag.destroy_all
-t1 = Tag.create(name: "IMI-B")
-t2 = Tag.create(name: "IMI-M")
-t3 = Tag.create(name: "Praktikum")
-t4 = Tag.create(name: "2. Semester")
-ta = Tag.create(name: "All IMIs")
-st17.tags = [ta,t1,t2]
-st18.tags = [ta,t1,t2]
-info.tags = [t2]
+Category.destroy_all
+
+t1 = Category.create(name: 'IMI-B')
+t2 = Category.create(name: 'IMI-M')
+t3 = Category.create(name: 'Praktikum')
+t4 = Category.create(name: '2. Semester')
+
+st17.categories = [t1,t2]
+st18.categories = [t1,t2]
+info.categories = [t4,t3]

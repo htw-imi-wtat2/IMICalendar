@@ -3,8 +3,8 @@
 <h1>Upcoming IMI-Events</h1>
 
 <p>
-  <% @tags.each do | tag | %>
-  <%= link_to tag.name, events_path(tag: tag) %>
+  <% @categories.each do | category | %>
+  <%= link_to category.name, events_path(category: category) %>
   <% end %>
 </p>
 

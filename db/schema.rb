@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20171026081959) do
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_events", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "event_id", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.datetime "start_date"
@@ -20,11 +31,6 @@ ActiveRecord::Schema.define(version: 20171026081959) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "events_tags", id: false, force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "tag_id", null: false
   end
 
   create_table "planning_states", force: :cascade do |t|
@@ -36,12 +42,6 @@ ActiveRecord::Schema.define(version: 20171026081959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_planning_states_on_event_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
