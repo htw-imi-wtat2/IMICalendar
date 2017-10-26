@@ -6,18 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-PlanningState.destroy_all
-Event.destroy_all
-Event.create(title: "Showtime WS 2017/18", start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-Event.create(title: "Showtime SS 2018", start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-Event.create(title: "Infoveranstaltung Auslandspraktikum IMI-B",  description: "Informationen zum Auslandspraktikum: Anmeldung, Anerkennung, Finanzierung" )
-
 User.destroy_all
 User.create(email: 'test@htw-berlin.de', name: 'Testuser', password: 'geheimgeheim',
             password_confirmation: 'geheimgeheim')
 
+
+PlanningState.destroy_all
+Event.destroy_all
+st17 = Event.create(title: "Showtime WS 2017/18", start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
+st18 = Event.create(title: "Showtime SS 2018", start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
+info = Event.create(title: "Infoveranstaltung Auslandspraktikum IMI-B",  description: "Informationen zum Auslandspraktikum: Anmeldung, Anerkennung, Finanzierung" )
+
 Tag.destroy_all
-Tag.create(name: "IMI-B")
-Tag.create(name: "IMI-M")
-Tag.create(name: "Praktikum")
-Tag.create(name: "2. Semester")
+t1 = Tag.create(name: "IMI-B")
+t2 = Tag.create(name: "IMI-M")
+t3 = Tag.create(name: "Praktikum")
+t4 = Tag.create(name: "2. Semester")
+ta = Tag.create(name: "All IMIs")
+st17.tags = [ta,t1,t2]
+st18.tags = [ta,t1,t2]
+info.tags = [t2]
