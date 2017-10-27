@@ -1,14 +1,15 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:show, :edit, :update, :destroy]
-  include CategoriesHelper
+  before_action :set_event_categories, only: [:show, :edit, :update, :destroy]
+  before_action :set_all_categories, only: [:new, :edit]
+include CategoriesHelper
   # GET /events
   # GET /events.json
   def index
     @categories = Category.all
 
-    if category_id = params[:category]
+    if (category_id = params[:category])
       # TBD: check if id is present
       @category = Category.find(category_id)
       @events = @category.events
@@ -92,12 +93,15 @@ class EventsController < ApplicationController
     @planning_state = @event.planning_state || @event.create_planning_state
   end
 
-  def set_categories
-    @categories_all = Category.names_alphabetically.join(', ')
+  def set_all_categories
+    names_alphabetically = Category.names_alphabetically
+    @categories_all = names_alphabetically.join(', ')
+    @categories_js = names_to_js(names_alphabetically)
+  end
+
+  def set_event_categories
     @categories = @event.categories
     @categories_s = categories_to_s(@categories)
-    names_alphabetically = Category.names_alphabetically
-    @categories_js = names_to_js(names_alphabetically)
   end
 
   # only allow the white list through.

@@ -17,7 +17,7 @@ module CategoriesHelper
   end
 
   def s_to_categories(s)
-    s.split(',').map(&:strip).map do |name|
+    s.split(',').map(&:strip).reject(&:empty?).map do |name|
       Category.find_or_create_by(name: name)
     end
   end
