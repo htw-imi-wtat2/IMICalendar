@@ -1,65 +1,57 @@
 
-
 <%= form_with(model: event, local: true) do |form| %>
-<table>
-  <tr>
-    <td>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-6 col-xs-12 ">
+        <% if event.errors.any? %>
+          <div id="error_explanation">
+             <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+             <ul>
+             <% event.errors.full_messages.each do |message| %>
+               <li><%= message %></li>
+             <% end %>
+             </ul>
+           </div>
+        <% end %>
 
-  <div class="field">
+
+  <h2><%= @title %></h2 >
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title %>
+    <%= form.text_field :title, id: :event_title, class: "form-control  form-control-lg" %>
   </div>
 
-
-
-    <p>Available Categories: <%= @categories_all %>
-    <div class="field">
+    <div class="form-group">
       <%= form.label :categories %>
-      <%= text_field_tag(:categories, value = @categories_s, id: 'categories') %>
+      <%= text_field_tag(:categories, value = @categories_s, id: 'categories', class: "form-control") %>
+      <p><small class="form-text text-muted">Available Categories: <%= @categories_all %> - just type name to create a new one</small></p>
     </div>
 
-    <div class="ui-widget">
-  <label for="tags">Tag programming languages: </label>
-  <input id="tags" size="50">
-</div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :start_date %>
     <%= form.datetime_select :start_date, id: :event_start_date %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :end_date %>
     <%= form.datetime_select :end_date, id: :event_end_date %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location %>
-    <%= form.text_field :location, id: :event_location %>
+    <%= form.text_field :location, id: :event_location, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
+    <%= form.text_area :description, id: :event_description, class: "form-control" %>
   </div>
 
+</div>
+<div class = "col-md-6 col-xs-12 ">
 
-</td>
-<td>
+<h2>Planning State</h2>
   <% planning_state = @planning_state %>
   <%= form.fields_for :planning_state, planning_state do |ps_form| %>
     <% if planning_state.errors.any? %>
@@ -74,32 +66,44 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= ps_form.label :date_set %>
-      <%= ps_form.check_box :date_set, id: :planning_state_date_set %>
-    </div>
 
-    <div class="field">
-      <%= ps_form.label :room_booked %>
-      <%= ps_form.check_box :room_booked, id: :planning_state_room_booked %>
-    </div>
-
-    <div class="field">
-      <%= ps_form.label :announced %>
-      <%= ps_form.check_box :announced, id: :planning_state_announced %>
-    </div>
-
-    <div class="field">
+    <div class="form-group">
       <%= ps_form.label :notes %>
-      <%= ps_form.text_area :notes, id: :planning_state_notes %>
+      <%= ps_form.text_area :notes, id: :planning_state_notes, class: "form-control", rows: 6 %>
     </div>
+
+    <div class = "row ">
+      <div class = "col-md-6 col-xs-2 ">
+        &nbsp;
+      </div>
+      <div class = "col-md-6 col-xs-10 align-self-end">
+        <% ['date_set','room_booked','announced'].each do | ps | %>
+        <div class="form-check">
+          <label class="form-check-label ">
+          <%= ps_form.check_box ps, id: "planning_state_#{ps}", class: "form-check-input" %>
+          <%= PlanningState.human_attribute_name(ps) %>
+          </label>
+        </div>
+        <% end %>
+      </div>
+    </div>
+<br/ >
+    <div class="form-group ">
+      <%= form.submit(class: "btn btn-primary") %>
+    </div>
+
+
 
 <% end %>
 
-</td>
-</tr>
-</table>
+    </div>
+  </div>
+</div>
 
+<% end %>
+  <!-- end form -->
+
+<!-- autocomplete script for categories -->
 <%
 # for documentation see:
 # https://jqueryui.com/autocomplete/#multiple
@@ -147,9 +151,4 @@
         }
       });
   } );
-
 </script>
-
-
-<% end %>
-<!-- end form -->
