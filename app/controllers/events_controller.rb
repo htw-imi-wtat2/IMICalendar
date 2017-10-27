@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:show, :edit, :update, :destroy]
-
+  include CategoriesHelper
   # GET /events
   # GET /events.json
   def index
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.categories = Category.s_to_categories(params[:categories])
+    @event.categories = s_to_categories(params[:categories])
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        @event.categories = Category.s_to_categories(params[:categories])
+        @event.categories = s_to_categories(params[:categories])
         @event.save
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -92,12 +92,10 @@ class EventsController < ApplicationController
     @planning_state = @event.planning_state || @event.create_planning_state
   end
 
-  include CategoriesHelper
-
   def set_categories
-    @categories_all = Category.all_s
+    @categories_all = Category.names_alphabetically.join(', ')
     @categories = @event.categories
-    @categories_s = Category.categories_to_s(@categories)
+    @categories_s = categories_to_s(@categories)
     names_alphabetically = Category.names_alphabetically
     @categories_js = names_to_js(names_alphabetically)
   end
