@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.categories = Category.s_to_categories(s_params[:categories])
+    @event.categories = Category.s_to_categories(params[:categories])
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
