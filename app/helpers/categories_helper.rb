@@ -2,6 +2,7 @@
 
 # creates spaceless ids to click on categories
 module CategoriesHelper
+
   def cat_to_id(category)
     name = case category
            when Category
@@ -11,4 +12,9 @@ module CategoriesHelper
            end
     name.tr(' ', '-')
   end
+
+  def names_to_js(names)
+    names.map{ |n| "\"#{n}\"" }.join(', ')
+  end
+
 end

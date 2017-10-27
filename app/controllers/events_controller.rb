@@ -92,10 +92,14 @@ class EventsController < ApplicationController
     @planning_state = @event.planning_state || @event.create_planning_state
   end
 
+  include CategoriesHelper
+
   def set_categories
     @categories_all = Category.all_s
     @categories = @event.categories
     @categories_s = Category.categories_to_s(@categories)
+    names_alphabetically = Category.names_alphabetically
+    @categories_js = names_to_js(names_alphabetically)
   end
 
   # only allow the white list through.

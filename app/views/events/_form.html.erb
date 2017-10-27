@@ -21,12 +21,18 @@
     <%= form.text_field :title, id: :event_title %>
   </div>
 
-  <p>Available Categories: <%= @categories_all %>
-  <div class="field">
-    <%= form.label :categories %>
-    <%= text_field_tag(:categories, value =  @categories_s) %>
-  </div>
 
+
+    <p>Available Categories: <%= @categories_all %>
+    <div class="field">
+      <%= form.label :categories %>
+      <%= text_field_tag(:categories, value = @categories_s, id: 'categories') %>
+    </div>
+
+    <div class="ui-widget">
+  <label for="tags">Tag programming languages: </label>
+  <input id="tags" size="50">
+</div>
 
   <div class="field">
     <%= form.label :start_date %>
@@ -94,6 +100,55 @@
 </tr>
 </table>
 
+<%
+# for documentation see:
+# https://jqueryui.com/autocomplete/#multiple
+# http://api.jqueryui.com/autocomplete/
+%>
+<script>
+  $( function() {
+    var availableTags = [<%= raw(@categories_js)%>];
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+
+    $( "#categories" )
+      // don't navigate away from the field on tab when selecting an item
+      .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+  } );
+
+</script>
 
 
 <% end %>

@@ -16,4 +16,9 @@ class Category < ApplicationRecord
   def self.all_s
     Category.all.order(:name).pluck(:name).join(', ')
   end
+
+  def self.names_alphabetically
+    Category.all.order(:name).pluck(:name)
+  end
+
 end
