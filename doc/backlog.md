@@ -9,4 +9,4 @@
 | S002 | As an IMI-Student, I get an overview of events coming up within the next week.                                                                |            |                |        |
 | S006 | I can see the IMI-Calendar in my favourite Calendar Application.                                                                              |            |                |        |
 | S009 | As an SGS, I can delete Categories from an Category-Maintenance View listing all the Categories.                                              | A2-Rspec   |                |        |
-| S010 | As an SGS, I can define Synonyms between Categories.                                                                                          | A2-Rspec   |                |        |
+| S010 | As an SGS, I can combine two categories into one.                                                                                             | A2-Rspec   |                |        |
