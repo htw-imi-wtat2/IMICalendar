@@ -4,7 +4,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :destroy]
   def index
-    @planning_states = PlanningState.all
+    @categories = Category.all
   end
 
   def show; end
