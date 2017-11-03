@@ -4,10 +4,10 @@
 
 <table>
 <% @categories.each do |category| %>
-  <tr>
+  <tr id = "category_<%= category.id %>">
     <td>haken</td>
     <td><%= category.name %></td>
-    <td>delete</td>
+    <td><%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>
 </table>

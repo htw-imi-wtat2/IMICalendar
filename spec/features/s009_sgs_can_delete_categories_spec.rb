@@ -17,5 +17,17 @@ describe 'category maintenance' do
         expect(page).to have_content(category)
       end
     end
+
+    it 'deletes category' do
+      c_names = %w[A B C D].map { |s| "Category #{s}" }
+      categories = c_names.map { |n| Category.create(name: n) }
+      visit categories_path
+      category_to_delete = categories[2]
+      expect do
+        within("#category_#{category_to_delete.id}") do
+          click_on 'Delete'
+        end
+      end.to change { Category.count }.by(-1)
+    end
   end
 end
