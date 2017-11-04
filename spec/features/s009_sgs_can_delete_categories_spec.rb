@@ -25,8 +25,9 @@ describe 'category maintenance' do
       category_to_delete = categories[2]
       expect do
         within("#category_#{category_to_delete.id}") do
-          click_on 'Delete'
+          check 'category_ids[]'
         end
+        click_on 'Delete'
       end.to change { Category.count }.by(-1)
     end
   end
