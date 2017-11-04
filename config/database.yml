@@ -2,7 +2,11 @@ default: &default
   adapter: postgresql
   encoding: unicode
   # host: localhost
+<% if ENV['IMICAL_ENV'] == "docker" %>
   host: db
+<% else %>
+  host: localhost
+<% end %>
   username: postgres
   password:
   pool: 5

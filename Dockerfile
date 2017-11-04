@@ -1,8 +1,9 @@
 FROM ruby:2.4.2
+ENV APP_HOME /imical
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN mkdir /imical
-WORKDIR /imical
-ADD Gemfile /imical/Gemfile
-ADD Gemfile.lock /imical/Gemfile.lock
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+ADD Gemfile $APP_HOME/Gemfile
+ADD Gemfile.lock $APP_HOME/Gemfile.lock
 RUN bundle install
-ADD . /imical
+ADD . $APP_HOME
