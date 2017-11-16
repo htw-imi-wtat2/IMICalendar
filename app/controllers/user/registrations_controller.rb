@@ -14,13 +14,23 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @user_ldap_generated = (resource.encrypted_password == "")
+    @user_ldap_generated = user_ldap_generated
     super
   end
 
   # PUT /resource
   def update
-   super
+    if user_ldap_generated
+      resource.update(password: params[:user][:password],
+                  password_confirmation: params[:user][:password_confirmation])
+      pw = params[:user][:password]
+      params[:user][:current_password] = pw
+    end
+    super
+  end
+
+  def user_ldap_generated
+    resource.encrypted_password == ''
   end
 
   # DELETE /resource
