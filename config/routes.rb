@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'user/registrations'
+  }
   resources :events
   resources :categories, only: %i[index destroy]
   get 'planning', to: 'events#planning'
