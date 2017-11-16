@@ -8,5 +8,7 @@
 | S008 | As a SGS, I can edit the Categories of an event while editing the event.                                                                      | A1         |                | Done   |
 | S002 | As an IMI-Student, I get an overview of events coming up within the next week.                                                                |            |                |        |
 | S006 | I can see the IMI-Calendar in my favourite Calendar Application.                                                                              |            |                |        |
-| S009 | As an SGS, I can delete Categories from an Category-Maintenance View listing all the Categories.                                              | A2-Rspec   |                |        |
-| S010 | As an SGS, I can combine two categories into one.                                                                                             | A2-Rspec   |                |        |
+| S009 | As an SGS, I can delete Categories from an Category-Maintenance View listing all the Categories.                                              | A2-Rspec   |                | Done   |
+| S010 | As an SGS, I can combine two categories into one.                                                                                             | A2-Rspec   |                | Done   |
+| S011 | As an SGS, I can edit the name of a category.                                                                                                 | A2-Rspec   |                |        |
+| S012 | Both as Student and SGS, I can log in with my FB4 Account (LDAP)                                                                              |            |                |        |
