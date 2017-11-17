@@ -1,4 +1,10 @@
 class User::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+
+
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -28,7 +34,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     #    params[:user][:current_password] = pw
     #    super
     #  else
-    #    @user_ldap_generated = user_ldap_generated
+    #    @user_ldap_generated = user_ldap_generat ed
     #    render :edit
     #  end
     #else
@@ -66,11 +72,12 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
-
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
+  def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :first_name, :middle_name, :last_name])
   end
+
+end
 
 
   # The path used after sign up.
@@ -82,4 +89,3 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-end
