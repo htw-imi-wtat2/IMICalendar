@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171026081959) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -22,8 +19,8 @@ ActiveRecord::Schema.define(version: 20171026081959) do
   end
 
   create_table "categories_events", id: false, force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "event_id", null: false
+    t.integer "category_id", null: false
+    t.integer "event_id", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -37,7 +34,7 @@ ActiveRecord::Schema.define(version: 20171026081959) do
   end
 
   create_table "planning_states", force: :cascade do |t|
-    t.bigint "event_id"
+    t.integer "event_id"
     t.boolean "date_set"
     t.boolean "room_booked"
     t.boolean "announced"
@@ -48,7 +45,8 @@ ActiveRecord::Schema.define(version: 20171026081959) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "last_name"
+    t.string "middle_name"
     t.string "first_name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,5 +61,4 @@ ActiveRecord::Schema.define(version: 20171026081959) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "planning_states", "events"
 end

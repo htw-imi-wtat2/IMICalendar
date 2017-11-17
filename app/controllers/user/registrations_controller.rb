@@ -20,17 +20,22 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if user_ldap_generated
-      resource.update(password: params[:user][:password],
-                  password_confirmation: params[:user][:password_confirmation])
-      pw = params[:user][:password]
-      params[:user][:current_password] = pw
-    end
-    super
-  end
+  #  configure_account_update_params
+    #if user_ldap_generated
+    #  pw = params[:user][:password]
+    #  pwc = params[:user][:password_confirmation]
+    #  if resource.update(password: pw, password_confirmation: pwc)
+    #    params[:user][:current_password] = pw
+    #    super
+    #  else
+    #    @user_ldap_generated = user_ldap_generated
+    #    render :edit
+    #  end
+    #else
 
-  def user_ldap_generated
-    resource.encrypted_password == ''
+      super
+
+    #end
   end
 
   # DELETE /resource
@@ -47,17 +52,26 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
+  def user_ldap_generated
+    resource.encrypted_password == ''
+  end
+
+  def update_resource(resource, params)
+    super unless user_ldap_generated
+    resource.update_without_password(params)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :first_name, :middle_name, :last_name])
+  end
+
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
