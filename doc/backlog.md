@@ -11,4 +11,4 @@
 | S009 | As an SGS, I can delete Categories from an Category-Maintenance View listing all the Categories.                                              | A2-Rspec   |                | Done   |
 | S010 | As an SGS, I can combine two categories into one.                                                                                             | A2-Rspec   |                | Done   |
 | S011 | As an SGS, I can edit the name of a category.                                                                                                 | A2-Rspec   |                |        |
-| S012 | Both as Student and SGS, I can log in with my FB4 Account (LDAP)                                                                              |            |                |        |
+| S012 | Both as Student and SGS, I can log in with my FB4 Account (LDAP). Passwords for DB Auth can be added later, Profile info can still be edited. |            |                |        |

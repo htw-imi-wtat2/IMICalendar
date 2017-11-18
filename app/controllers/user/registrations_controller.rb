@@ -61,7 +61,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_ldap_generated
-    resource.encrypted_password == ''
+    resource.ldap_authorized?
   end
 
   def update_resource(resource, params)

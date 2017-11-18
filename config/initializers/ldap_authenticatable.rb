@@ -2,7 +2,7 @@ require 'net/ldap'
 require 'devise/strategies/authenticatable'
 
 class LDAPAdapter
-  attr_accessor :params
+  attr_accessor :params, :host, :port, :connectstring
 
   def initialize(params)
     @params = params
@@ -27,13 +27,13 @@ class LDAPAdapter
   end
 
   def config
+    # ldap_host|ldap_port|ldap_htw
     ldapconfig = ENV['LDAP']
     Rails.logger.warn("LDAP configuration missing - export set LDAP='' to use ldap") unless ldapconfig
-    ldapconfig&.split('|')
+    @host, @port, @connectstring = ldapconfig&.split('|')
   end
 
   def create
-
     ldap_host, ldap_port, ldap_htw = config
     ldap_username = username
     ldap_password = password
@@ -48,11 +48,19 @@ class LDAPAdapter
                            username: "CN=#{ldap_username},#{ldap_htw}",
                            password: ldap_password
                          })
-    return self
+    self
   end
 
   def authenticate
-    @netldap.bind
+    begin
+      success_or_not = @netldap.bind
+    rescue Exception => e
+      Rails.logger.warn("LDAP: Could not connect to server #{host}")
+      Rails.logger.warn(e.class)
+      Rails.logger.warn(e.message)
+      return false
+    end
+    success_or_not
   end
 end
 
