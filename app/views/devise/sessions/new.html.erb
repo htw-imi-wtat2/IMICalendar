@@ -2,6 +2,11 @@
 <h2>Log in</h2>
 </header>
 
+<% if params[:ldap_status] %>
+There have been issues with LDAP Authorization:
+<%= params[:ldap_status] %>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
   <div class="form-group">

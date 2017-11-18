@@ -5,6 +5,13 @@ Devise.setup do |config|
     manager.strategies.add(:ldap_authenticatable, Devise::Strategies::LdapAuthenticatable)
     manager.default_strategies(scope: :user).unshift :ldap_authenticatable
   end
+
+  Warden::Manager.before_failure do |env, opts|
+    Rails.logger.warn('Catched before_failure')
+    request = Rack::Request.new(env)
+    request.params[:auth_error] = "own error"
+  end
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

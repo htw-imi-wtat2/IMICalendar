@@ -2,20 +2,27 @@ require 'net/ldap'
 require 'devise/strategies/authenticatable'
 
 class LDAPAdapter
-  attr_accessor :params, :host, :port, :connectstring
+  attr_accessor :params, :host, :port, :connectstring, :request
 
-  def initialize(params)
+  def initialize(request, params)
+    @request = request
     @params = params
   end
 
+  def report_issue(message)
+    request.logger.warn(message)
+    params[:ldap_status] = [] unless params[:ldap_status]
+    params[:ldap_status] << message
+  end
   def valid
     config && params[:user] && (username && password)
   end
 
   def username
     m = /\A(.*)@.*htw-berlin.de\z/.match(email)
-    Rails.logger.warn("email couln't be matched: #{email}") unless m
-    m ? m[1] : nil
+    return m[1] if m
+    report_issue("email couldn't be matched: #{email}")
+    nil
   end
 
   def email
@@ -29,7 +36,7 @@ class LDAPAdapter
   def config
     # ldap_host|ldap_port|ldap_htw
     ldapconfig = ENV['LDAP']
-    Rails.logger.warn("LDAP configuration missing - export set LDAP='' to use ldap") unless ldapconfig
+    report_issue("LDAP configuration missing - export set LDAP='' to use ldap") unless ldapconfig
     @host, @port, @connectstring = ldapconfig&.split('|')
   end
 
@@ -54,10 +61,10 @@ class LDAPAdapter
   def authenticate
     begin
       success_or_not = @netldap.bind
-    rescue Exception => e
-      Rails.logger.warn("LDAP: Could not connect to server #{host}")
-      Rails.logger.warn(e.class)
-      Rails.logger.warn(e.message)
+    rescue StandardError => e
+      report_issue("LDAP: Could not connect to server #{host}")
+      # report_issue(e.class)
+      # report_issue(e.message)
       return false
     end
     success_or_not
@@ -70,20 +77,21 @@ module Devise
     # Implements Authentication against HTW FB4 Ldap.
     class LdapAuthenticatable < Authenticatable
 
-      def ldap(params)
-        LDAPAdapter.new(params)
+      def ldap(request,params)
+        LDAPAdapter.new(request,params)
       end
 
       def valid?
-        valid = ldap(params).valid
-        Rails.logger.warn("config missing params not valid for ldap ") unless valid
+        adapter = ldap(request,params)
+        valid = adapter.valid
+        adapter.report_issue('LDAP: config missing params not valid for ldap') unless valid
         valid
       end
 
       def authenticate!
-        ldapadapter = ldap(params).create
+        ldapadapter = ldap(request,params).create
         auth_successful = ldapadapter.authenticate
-        Rails.logger.info ("LDAP: failed authentication for #{ldapadapter.email}") unless auth_successful
+        ldapadapter.report_issue("LDAP: failed authentication for #{ldapadapter.email}") unless auth_successful
         return fail(:invalid_login) unless auth_successful
         user = User.find_or_create_by(email: ldapadapter.email)
         success!(user)
