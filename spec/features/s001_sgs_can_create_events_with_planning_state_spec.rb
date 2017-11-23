@@ -5,9 +5,11 @@ describe 'S001: SGS or an Admin user' do
     before :each do
       user = create(:user)
       login_as(user, scope: :user)
+
     end
     it 'can create events with planning state' do
       visit new_event_path
+      # save_and_open_page
 
       # note that these are all ids rather than texts.
       fill_in 'event_title', with: 'IMI-Weihnachtsfeier'
