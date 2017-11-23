@@ -1,14 +1,17 @@
+# frozen_string_literal: true
 require 'rails_helper'
 describe 'S001: SGS or an Admin user' do
   context '(when logged in)' do
     before :each do
-      user = User.create(email: 'someone@htw-berlin.de', password: 'geheimgeheim', password_confirmation: 'geheimgeheim')
-      login_as(user, :scope => :user)
+      user = User.create(email: 'someone@htw-berlin.de',
+                         password: 'geheimgeheim',
+                         password_confirmation: 'geheimgeheim')
+      login_as(user, scope: :user)
     end
     it 'can create events with planning state' do
       visit new_event_path
       # save_and_open_page
-
+      
       # note that these are all ids rather than texts.
       fill_in 'event_title', with: 'IMI-Weihnachtsfeier'
       fill_in 'event_location', with: 'H001'
