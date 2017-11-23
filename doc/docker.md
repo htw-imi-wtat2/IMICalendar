@@ -1,3 +1,16 @@
+# General Information
+
+* [What are Containers?](https://www.docker.com/what-container)
+* [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+* [docker-compose](https://docs.docker.com/compose/reference/overview/)
+* [Docker-Workshop von Sebastian May](https://github.com/matuschewski-schulze) - excellent Dockerfile and
+docker-compose cheat sheet, also check out the[Slides](https://rawgit.com/matuschewski-schulze/docker-workshop/master/presentation/docker.html#1)
+
+# Local Docker Installation
+
+Go to [https://www.docker.com/get-docker](https://www.docker.com/get-docker)
+and install Docker on your system.
+
 # Dockerization of App
 
 followed the tutorial found at:
