@@ -2,9 +2,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-
-
-
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -18,6 +15,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def show; end
+
   # GET /resource/edit
   def edit
     @user_ldap_generated = user_ldap_generated
@@ -26,22 +25,17 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-  #  configure_account_update_params
-    #if user_ldap_generated
-    #  pw = params[:user][:password]
-    #  pwc = params[:user][:password_confirmation]
-    #  if resource.update(password: pw, password_confirmation: pwc)
-    #    params[:user][:current_password] = pw
-    #    super
-    #  else
-    #    @user_ldap_generated = user_ldap_generat ed
-    #    render :edit
-    #  end
-    #else
-
-      super
-
-    #end
+    if user_ldap_generated
+      pw = params[:user][:password]
+      pwc = params[:user][:password_confirmation]
+      if pw && pwc
+        unless resource.update(password: pw, password_confirmation: pwc)
+          flash[:alert] = 'Password could not be changed'
+        end
+      end
+    end
+    # let devise default implementation handle the rest of the resource update
+    super
   end
 
   # DELETE /resource
@@ -64,10 +58,18 @@ class User::RegistrationsController < Devise::RegistrationsController
     resource.ldap_authorized?
   end
 
+  # overwrites update_resource in devise controller
+  # does not work for changing passwords as
+  # update_without_password deletes the passwords.
   def update_resource(resource, params)
     super unless user_ldap_generated
     resource.update_without_password(params)
   end
+
+  def after_update_path_for(resource)
+     edit_user_registration_path
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
@@ -78,14 +80,3 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
 end
-
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
