@@ -9,8 +9,6 @@ describe 'S001: SGS or an Admin user' do
     end
     it 'can create events with planning state' do
       visit new_event_path
-      # save_and_open_page
-
       # note that these are all ids rather than texts.
       fill_in 'event_title', with: 'IMI-Weihnachtsfeier'
       fill_in 'event_location', with: 'H001'
@@ -20,9 +18,7 @@ describe 'S001: SGS or an Admin user' do
       check('planning_state_room_booked')
       check('planning_state_announced')
       fill_in 'planning_state_notes', with: 'think of everything'
-
       click_button 'Create Event'
-
       expect(page).to have_content('Event was successfully created.')
       expect(page).to have_content('IMI-Weihnachtsfeier')
       expect(page).to have_content('Date set: true')

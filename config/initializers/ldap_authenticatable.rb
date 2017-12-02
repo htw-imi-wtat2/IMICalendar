@@ -1,19 +1,21 @@
 require 'net/ldap'
 require 'devise/strategies/authenticatable'
 
+# HTW Specific Adapter to LDAP
 class LDAPAdapter
-  attr_accessor :params, :host, :port, :connectstring, :request
+  attr_accessor :params, :host, :port, :connectstring, :logger
 
-  def initialize(request, params)
-    @request = request
+  def initialize(params, logger = Logger.new(STDOUT))
     @params = params
+    @logger = logger
   end
 
   def report_issue(message)
-    request.logger.warn(message)
+    @logger.warn(message)
     params[:ldap_status] = [] unless params[:ldap_status]
     params[:ldap_status] << message
   end
+
   def valid
     config && params[:user] && (username && password)
   end
@@ -77,19 +79,19 @@ module Devise
     # Implements Authentication against HTW FB4 Ldap.
     class LdapAuthenticatable < Authenticatable
 
-      def ldap(request,params)
-        LDAPAdapter.new(request,params)
+      def ldap(params, request)
+        LDAPAdapter.new(params,request.logger)
       end
 
       def valid?
-        adapter = ldap(request,params)
+        adapter = ldap(params, request)
         valid = adapter.valid
         adapter.report_issue('LDAP: config missing params not valid for ldap') unless valid
         valid
       end
 
       def authenticate!
-        ldapadapter = ldap(request,params).create
+        ldapadapter = ldap(params, request).create
         auth_successful = ldapadapter.authenticate
         ldapadapter.report_issue("LDAP: failed authentication for #{ldapadapter.email}") unless auth_successful
         return fail(:invalid_login) unless auth_successful
