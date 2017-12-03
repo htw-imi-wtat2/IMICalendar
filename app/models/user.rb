@@ -6,4 +6,8 @@ class User < ApplicationRecord
   # :recoverable, :rememberable
   devise :database_authenticatable, :registerable, :rememberable, :trackable,
          :validatable
+
+  def ldap_authorized?
+    encrypted_password == ''
+  end
 end

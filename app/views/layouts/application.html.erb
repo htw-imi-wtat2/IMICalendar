@@ -10,54 +10,25 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class = "container">
-    <% if notice.present? %>
-      <aside class = "alert alert-info">
-        <%= notice %>
-      </aside>
-    <% end %>
-    <% if alert.present? %>
-      <aside class = "alert alert-danger">
-        <%= alert %>
-      </aside>
-    <% end %>
+
 
         <div class="container">
           <header class="header clearfix">
-            <nav>
-              <!-- active
-              <span class="sr-only">(current)</span>
-              -->
-              <ul class="nav nav-pills float-right">
-                <li class="nav-item">
-                  <%= link_to 'Events', root_path, class: 'nav-link' %>
-                </li>
-                <% if current_user %>
-                <li class="nav-item">
-                  <%= link_to 'Planning', planning_path, class: 'nav-link' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to 'Categories', categories_path, class: 'nav-link' %>
-                </li>
-                <% end %>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                  <% if current_user %>
-                     <%= link_to "Log Out", destroy_user_session_path, class: 'nav-link', method: :delete %>
-                  <% else %>
-                     <%= link_to 'Log in', new_user_session_path, class: 'nav-link' %>
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= image_tag "imi-small.jpg" %>
-                </li>
-              </ul>
-            </nav>
+            <%= render 'navigation' %>
             <h3 class="text-muted">IMI-Calendar</h3>
           </header>
 
           <main role="main">
+            <% if notice.present? %>
+              <aside class = "alert alert-info">
+                <%= notice %>
+              </aside>
+            <% end %>
+            <% if alert.present? %>
+              <aside class = "alert alert-danger">
+                <%= alert %>
+              </aside>
+            <% end %>
 <!--
             <div class="jumbotron">
               <h1 class="display-3">Jumbotron heading</h1>
