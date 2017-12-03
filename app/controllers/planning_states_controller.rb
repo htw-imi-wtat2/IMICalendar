@@ -68,7 +68,8 @@ class PlanningStatesController < ApplicationController
     @planning_state = PlanningState.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def planning_state_params
     params.require(:planning_state).permit(:event_id, :date_set, :room_booked, :announced, :notes)
   end

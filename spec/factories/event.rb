@@ -30,7 +30,8 @@ FactoryBot.define do
   #    start_date DateTime.new(2018,2,2,10,0)
   #    end_date DateTime.new(2018,2,2,17,0)
   #    location "H001"
-  #    description "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters"
+  #    description "Präsentation und Messe der IMI-B und IMI-M Projekte des
+  # aktuellen Semesters"
   #    association :planning_state, factory: :planning_state_1
   #    end
   #
@@ -39,7 +40,8 @@ FactoryBot.define do
   #    start_date DateTime.new(2018,7,27,10,0)
   #    end_date DateTime.new(2018,7,27,17,0)
   #    location "H001"
-  #    description "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters"
+  #    description "Präsentation und Messe der IMI-B und IMI-M Projekte des
+  # aktuellen Semesters"
   #    association :planning_state, factory: :planning_state_2
   #
   #  end
