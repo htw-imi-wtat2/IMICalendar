@@ -15,7 +15,7 @@ describe 'ldap login' do
   end
   context 'with DB AUTH' do
     before :each do
-      @user = User.new(email: 'someone2@htw-berlin.de',
+      @user = User.create(email: 'someone2@htw-berlin.de',
                        password: 'geheimgeheim',
                        password_confirmation: 'geheimgeheim')
       login_as(@user, scope: :user)
@@ -31,7 +31,7 @@ describe 'ldap login' do
       fill_in 'user_last_name', with: 'Hopper'
       click_on 'user-registration-edit-submit'
       edited_user = User.where(email: @user.email).first
-      expect(edited_user.first_name).to eq 'Ada'
+      expect(edited_user.first_name).to eq 'Grace'
       expect(edited_user.middle_name).to eq 'Brewster Murray'
       expect(edited_user.last_name).to eq 'Hopper'
     end
