@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,58 +12,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026081959) do
-
+ActiveRecord::Schema.define(version: 20_171_026_081_959) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'categories', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "categories_events", id: false, force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "event_id", null: false
+  create_table 'categories_events', id: false, force: :cascade do |t|
+    t.bigint 'category_id', null: false
+    t.bigint 'event_id', null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "location"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'events', force: :cascade do |t|
+    t.string 'title'
+    t.datetime 'start_date'
+    t.datetime 'end_date'
+    t.string 'location'
+    t.text 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "planning_states", force: :cascade do |t|
-    t.bigint "event_id"
-    t.boolean "date_set"
-    t.boolean "room_booked"
-    t.boolean "announced"
-    t.text "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_planning_states_on_event_id"
+  create_table 'planning_states', force: :cascade do |t|
+    t.bigint 'event_id'
+    t.boolean 'date_set'
+    t.boolean 'room_booked'
+    t.boolean 'announced'
+    t.text 'notes'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['event_id'], name: 'index_planning_states_on_event_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "first_name"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'first_name'
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.datetime 'remember_created_at'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string 'current_sign_in_ip'
+    t.string 'last_sign_in_ip'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "planning_states", "events"
+  add_foreign_key 'planning_states', 'events'
 end

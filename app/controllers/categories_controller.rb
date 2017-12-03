@@ -43,11 +43,12 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
   end
+
   def set_categories
     @categories = Category.all
   end
 
-#  def category_params
-#    params.require(:planning_state).permit(:name)
-#  end
+  #  def category_params
+  #    params.require(:planning_state).permit(:name)
+  #  end
 end

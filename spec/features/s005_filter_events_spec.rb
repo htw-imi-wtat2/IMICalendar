@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 's005: as a Student, I can filter events that are relevant for me (B/M, Semester).' do
   include CategoriesHelper
@@ -45,6 +47,4 @@ describe 's005: as a Student, I can filter events that are relevant for me (B/M,
     expect(page).to have_content(@e2.title)
     expect(page).to have_content(@e3.title)
   end
-
-
 end

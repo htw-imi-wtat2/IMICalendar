@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CategoriesHelper, type: :helper do
-
   it 'converts a list of categories into an alphabetically sorted string' do
-    categories = ['D','A','C','B'].map{ |n| Category.create(name: n) }
-    expect(categories_to_s(categories)).to eq("A, B, C, D")
+    categories = %w[D A C B].map { |n| Category.create(name: n) }
+    expect(categories_to_s(categories)).to eq('A, B, C, D')
   end
   context 'with two existing categories h, d' do
     before :each do
@@ -34,5 +35,4 @@ RSpec.describe CategoriesHelper, type: :helper do
     end.to change { Category.count }.by(1)
     expect(categories_to_s(categories)).to eq('b, h, x')
   end
-
 end

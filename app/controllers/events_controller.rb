@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_categories, only: [:show, :edit, :update, :destroy]
-  before_action :set_all_categories, only: [:new, :edit]
-include CategoriesHelper
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_event_categories, only: %i[show edit update destroy]
+  before_action :set_all_categories, only: %i[new edit]
+  include CategoriesHelper
   # GET /events
   # GET /events.json
   def index
@@ -30,8 +32,7 @@ include CategoriesHelper
 
   # GET /events/1
   # GET /events/1.json
-  def show
-  end
+  def show; end
 
   # GET /events/new
   def new
@@ -40,8 +41,7 @@ include CategoriesHelper
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 's003: students see current events on the start page' do
   before :each do
@@ -8,7 +10,7 @@ describe 's003: students see current events on the start page' do
 
   it 'shows the events' do
     visit root_path
-    [@e1,@e2,@e3].each do |event|
+    [@e1, @e2, @e3].each do |event|
       expect(page).to have_content(event.title)
     end
   end

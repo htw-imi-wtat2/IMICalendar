@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PlanningStatesController < ApplicationController
-  before_action :set_planning_state, only: [:show, :edit, :update, :destroy]
+  before_action :set_planning_state, only: %i[show edit update destroy]
 
   # GET /planning_states
   # GET /planning_states.json
@@ -9,8 +11,7 @@ class PlanningStatesController < ApplicationController
 
   # GET /planning_states/1
   # GET /planning_states/1.json
-  def show
-  end
+  def show; end
 
   # GET /planning_states/new
   def new
@@ -18,8 +19,7 @@ class PlanningStatesController < ApplicationController
   end
 
   # GET /planning_states/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /planning_states
   # POST /planning_states.json
@@ -62,13 +62,14 @@ class PlanningStatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_planning_state
-      @planning_state = PlanningState.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def planning_state_params
-      params.require(:planning_state).permit(:event_id, :date_set, :room_booked, :announced, :notes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_planning_state
+    @planning_state = PlanningState.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def planning_state_params
+    params.require(:planning_state).permit(:event_id, :date_set, :room_booked, :announced, :notes)
+  end
 end

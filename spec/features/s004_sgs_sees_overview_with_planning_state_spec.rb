@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 's004: sgs sees overview with planning information' do
-
   before :each do
     p1 = create(:planning_state_1)
     p2 = create(:planning_state_2)
@@ -11,7 +12,7 @@ describe 's004: sgs sees overview with planning information' do
   context '(when logged in)' do
     before :each do
       user = User.create(email: 'someone@htw-berlin.de', password: 'geheimgeheim', password_confirmation: 'geheimgeheim')
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
     end
     it 'shows the events' do
       visit planning_path
@@ -19,9 +20,9 @@ describe 's004: sgs sees overview with planning information' do
       expect(page).to have_content(@e2.title)
     end
 
-    it "shows the planning details for events" do
+    it 'shows the planning details for events' do
       [@e1, @e2].each do |e|
-        ['date_set','room_booked','announced'].each do |m|
+        %w[date_set room_booked announced].each do |m|
           visit planning_path
           expect(find("##{checkbox_id(e, m)}").checked?).to eq e.planning_state.send(m)
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 'S008: As a SGS, I can edit the Categories of an event while editing the event..' do
   before :each do

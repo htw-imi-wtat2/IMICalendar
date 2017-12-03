@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 's004: SGS can announce events' do
   context '(when logged in)' do

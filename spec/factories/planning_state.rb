@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :planning_state_1, class: PlanningState do
     date_set false
@@ -22,5 +24,4 @@ FactoryBot.define do
     notes 'prepare everything'
     association :event, factory: :e2
   end
-
 end
