@@ -2,22 +2,19 @@ require 'rails_helper'
 describe 'ldap login' do
   context 'with LDAP auth' do
     before :each do
-      @user = User.create(email: 'someone@htw-berlin.de')
+      #@user = create(:user_without_password)
+      @user = User.create(email: 'ldap_authenticated@htw-berlin.de')
       login_as(@user, scope: :user)
     end
     it 'ldap authorization can be detected' do
       expect(@user.ldap_authorized?).to be true
     end
-    it 'user profile info can be edited' do
-      pending
-    #  visit # go on here
-    end
+    it 'user profile info can be edited'
+    # go on here
   end
   context 'with DB AUTH' do
     before :each do
-      @user = User.create(email: 'someone2@htw-berlin.de',
-                       password: 'geheimgeheim',
-                       password_confirmation: 'geheimgeheim')
+      @user = create(:user)
       login_as(@user, scope: :user)
     end
     it 'DB authorization can be detected' do
