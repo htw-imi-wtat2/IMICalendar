@@ -9,7 +9,7 @@ module CategoriesHelper
            else
              category.to_s
            end
-    name.tr(' ', '-')
+    name.tr(' ', '-').downcase
   end
 
   def categories_to_s(categories)

@@ -4,26 +4,16 @@ require 'rails_helper'
 describe 'category maintenance' do
   context '(when logged in)' do
     before :each do
-      user = User.create(email: 'someone@htw-berlin.de',
-                         password: 'geheimgeheim',
-                         password_confirmation: 'geheimgeheim')
+      user = create(:user)
       login_as(user, scope: :user)
     end
     before :each do
-      @e1 = Event.create(title: 'Event 1',
-                         start_date: DateTime.new(2018,2,2,10,0),
-                         end_date: DateTime.new(2018,2,2,17,0),
-                         location: 'H001',
-                         description: 'The description of the event no 1')
+      @e1 = create(:e1)
 
-      @e2 = Event.create(title: 'Event 2',
-                         start_date: DateTime.new(2018,2,2,10,0),
-                         end_date: DateTime.new(2018,2,2,17,0),
-                         location: 'H001',
-                         description: 'The description of the event no 2')
-      @c1 = Category.create(name: 'category 1')
-      @c2 = Category.create(name: 'category 2')
-      @c3 = Category.create(name: 'category 3')
+      @e2 = create(:e2)
+      @c1 = create(:trick)
+      @c2 = create(:tick)
+      @c3 = create(:track)
       @e1.categories << @c1
       @e2.categories << @c2
       @e2.categories << @c3
@@ -32,9 +22,9 @@ describe 'category maintenance' do
 
     it 'shows categories on maintenance page' do
       visit categories_path
-      expect(page).to have_content('category 1')
-      expect(page).to have_content('category 2')
-      expect(page).to have_content('category 3')
+      expect(page).to have_content(@c1.name)
+      expect(page).to have_content(@c2.name)
+      expect(page).to have_content(@c3.name)
     end
 
     it 'deletes one category' do

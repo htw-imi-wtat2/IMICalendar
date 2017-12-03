@@ -2,10 +2,10 @@ require 'rails_helper'
 describe 's004: sgs sees overview with planning information' do
 
   before :each do
-    @e1 = Event.create(title: "Event1", start_date: DateTime.new(2018,2,2,10,0), end_date:DateTime.new(2018,2,2,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-    @e1.create_planning_state(date_set: false, room_booked: true, announced: false, notes: 'prepare everything')
-    @e2 = Event.create(title: "Event2", start_date: DateTime.new(2018,7,27,10,0), end_date:DateTime.new(2018,7,27,17,0), location: "H001", description: "Präsentation und Messe der IMI-B und IMI-M Projekte des aktuellen Semesters" )
-    @e2.create_planning_state(date_set: true, room_booked: false, announced: true, notes: 'prepare everything')
+    p1 = create(:planning_state_1)
+    p2 = create(:planning_state_2)
+    @e1 = p1.event
+    @e2 = p2.event
   end
 
   context '(when logged in)' do
@@ -15,8 +15,8 @@ describe 's004: sgs sees overview with planning information' do
     end
     it 'shows the events' do
       visit planning_path
-      expect(page).to have_content('Event1')
-      expect(page).to have_content('Event2')
+      expect(page).to have_content(@e1.title)
+      expect(page).to have_content(@e2.title)
     end
 
     it "shows the planning details for events" do

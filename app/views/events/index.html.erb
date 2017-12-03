@@ -3,9 +3,9 @@
 <h1>Upcoming IMI-Events</h1>
 
 <p>
-  <%= link_to 'alle zeigen', events_path( id: cat_to_id(:all)) %>
+  <%= link_to 'alle zeigen', events_path, id: cat_to_id(:all) %>
   <% @categories.each do | category | %>
-  <%= link_to category.name, events_path(category: category, id: cat_to_id(category)) %>
+  <%= link_to category.name, events_path(category: category), id: cat_to_id(category) %>
   <% end %>
 </p>
 
