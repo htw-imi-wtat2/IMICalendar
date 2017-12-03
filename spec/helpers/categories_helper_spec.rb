@@ -12,8 +12,6 @@ RSpec.describe CategoriesHelper, type: :helper do
       Category.create(name: 'd')
     end
     it 'converts a string to an array of categories, creating missing ones' do
-      # expect(Category.all.size).to eq 0
-      expect(Category.count).to eq 2
       categories = s_to_categories('b, h, x, d')
       expect(categories[0].name).to eq 'b'
       expect(categories_to_s(categories)).to eq('b, d, h, x')
@@ -25,14 +23,16 @@ RSpec.describe CategoriesHelper, type: :helper do
       end.to change { Category.count }.by(2)
     end
   end
-  it 'converts a string to an array of categories, skipping space behind comma' do
-    expect(Category.all.size).to eq 0
-    Category.create(name: 'h')
-    Category.create(name: 'x')
-    expect(Category.count).to eq 2
-    categories = s_to_categories('b, h, x, ')
+  it 'converts a string to an array of categories, skipping whitespace' do
+    expect do
+      Category.create(name: 'h')
+      Category.create(name: 'x')
+    end.to change { Category.count }.by(2)
+    categories = nil
+    expect do
+      categories = s_to_categories('b, h, x, ')
+    end.to change { Category.count }.by(1)
     expect(categories_to_s(categories)).to eq('b, h, x')
-    expect(Category.count).to eq 3
   end
 
 end
