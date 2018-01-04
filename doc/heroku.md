@@ -1,3 +1,13 @@
+
+# Deployment to Heroku
+
+
+
+https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+
+
+
 Install the command line interface (CLI)
 https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 
@@ -11,3 +21,7 @@ https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-an-
 codeship article:
 
 https://blog.codeship.com/deploying-docker-rails-app/
+
+
+
+git push heroku master
