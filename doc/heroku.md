@@ -1,27 +1,6 @@
 
 # Deployment to Heroku
+there is another app for the deployment:
 
-
-
-https://devcenter.heroku.com/articles/container-registry-and-runtime
-
-
-
-
-Install the command line interface (CLI)
-https://devcenter.heroku.com/articles/heroku-cli#download-and-install
-
-https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-an-image-s
-
-
-<pre class=" language-term"><code class=" language-term"><span class="token input"><span class="token prompt">$ </span>heroku container:login</span>
-</code></pre>
-
-
-codeship article:
-
-https://blog.codeship.com/deploying-docker-rails-app/
-
-
-
-git push heroku master
+* [Deploy with git push ](https://github.com/htw-imi-rails-examples/notes-deploy/)
+* [Deploy with Docker Container](https://github.com/htw-imi-rails-examples/docker-travis-heroku)

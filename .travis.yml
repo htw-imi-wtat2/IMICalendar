@@ -8,8 +8,3 @@ before_script:
 - docker-compose run imical bundle exec rails db:test:prepare
 script:
 - docker-compose run --rm imical bundle exec rake spec
-deploy:
-  app: imical
-  provider: heroku
-  api_key:
-    secure: Y6GyzyMMtKxIJf8vn0O2cvBWqXo0JP9/8SC2cbVSubA3PJEBRGtS//rbu8OqsjDKTiUAvJepGevU+LjjouEg4TszpRhlWGcvGyYtogl+VroIKXYhjhOxA422XR8aoHGjiHZQWeTuk9OhIZJIOk2snnBTAtsYl4lXje8ELThv9DRpzh12d0bG/DvZln3qJt6KOzVPiiGI3NRFfVGdUl7lzASdIy5ChyORBFE+vHjzoxEGHglNkx5EPKtA/rf3VFxuWnCLvS3Kk4c/abgGSFM2cs+ru9nXwRDO8XRrlSnu6vj16wfXUyyFoW9fBSRknUE37nyC0Lsey+c7VPSoo44gMM0vXaxXgp8B774ZLxCrtyh86WLmMqsLDfDU2vAvRRhwjXSOMDLzUhqmu0u1KLCdtxlJmzy3DX05gNrvkN0Dcy/Gy8bZJ+SrxlCmzI+wzhPl4tw8yEsLNpvGbhdR4cXJp2ROhNt8qAIzLV1qkv2zg2i531MQEWlDAS16+ShYxSko6TtFSw90SzIyF6whjrUitKeh5X5gbSzrSK7VAbqo+72M++7jlS/5UeZsBOGnQFALka86sPuqT4QW7unyY5cBmtc5SCA5V+9yh9oBmNEoZ4Ln74t3fMAi60NtLcfDCBUSQPp8Rp9zqOi95k2yB4D1krxA+L0+cq3XpHmB/57j2hM=
